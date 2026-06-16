@@ -1,0 +1,13 @@
+{
+  "name": "order-fulfillment-coordinator",
+  "private": true,
+  "scripts": {
+    "dev:api": "cd apps/api && uv run fastapi dev src/fulfillment/main.py",
+    "lint:api": "cd apps/api && uvx ruff check .",
+    "typecheck:api": "cd apps/api && uvx mypy src/"
+  },
+  "engines": {
+    "pnpm": ">=9",
+    "node": ">=20"
+  }
+}

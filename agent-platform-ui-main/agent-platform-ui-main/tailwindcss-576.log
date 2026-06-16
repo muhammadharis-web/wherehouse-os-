@@ -1,0 +1,104 @@
+2026-06-11T17:05:24.029310Z  INFO tailwindcss_oxide::scanner: Provided sources:
+2026-06-11T17:05:24.029888Z  INFO tailwindcss_oxide::scanner: Source: PublicSourceEntry { base: "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main", pattern: "**/*", negated: false }
+2026-06-11T17:05:24.031667Z  INFO tailwindcss_oxide::scanner: Optimized sources:
+2026-06-11T17:05:24.031735Z  INFO tailwindcss_oxide::scanner: Source: Auto { base: "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main" }
+2026-06-11T17:05:24.067905Z  INFO discover_sources: tailwindcss_oxide::scanner: enter
+2026-06-11T17:05:24.070128Z  INFO discover_sources:walk_synchronous: tailwindcss_oxide::scanner: enter
+2026-06-11T17:05:24.098526Z  INFO discover_sources:walk_synchronous: tailwindcss_oxide::scanner: exit
+2026-06-11T17:05:24.301691Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\AGENTS.md"
+2026-06-11T17:05:24.301859Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\CLAUDE.md"
+2026-06-11T17:05:24.303979Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\components.json"
+2026-06-11T17:05:24.304274Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\eslint.config.mjs"
+2026-06-11T17:05:24.304514Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\next.config.ts"
+2026-06-11T17:05:24.304657Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\package.json"
+2026-06-11T17:05:24.304778Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\postcss.config.mjs"
+2026-06-11T17:05:24.304891Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\public\\file.svg"
+2026-06-11T17:05:24.305306Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\public\\globe.svg"
+2026-06-11T17:05:24.305428Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\public\\next.svg"
+2026-06-11T17:05:24.305654Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\public\\vercel.svg"
+2026-06-11T17:05:24.305765Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\public\\window.svg"
+2026-06-11T17:05:24.306003Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\README.md"
+2026-06-11T17:05:24.306126Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\spec\\architecture.md"
+2026-06-11T17:05:24.306252Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\app\\api\\ai\\chat\\route.ts"
+2026-06-11T17:05:24.306503Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\app\\api\\ai\\insight\\route.ts"
+2026-06-11T17:05:24.306665Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\app\\api\\ai\\suggest\\route.ts"
+2026-06-11T17:05:24.307582Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\app\\dashboard\\layout.tsx"
+2026-06-11T17:05:24.307812Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\app\\dashboard\\page.tsx"
+2026-06-11T17:05:24.308019Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\app\\layout.tsx"
+2026-06-11T17:05:24.308145Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\app\\page.tsx"
+2026-06-11T17:05:24.308270Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\ai\\AIAssistant.tsx"
+2026-06-11T17:05:24.308385Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\ai\\AIInsights.tsx"
+2026-06-11T17:05:24.308518Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\dashboard\\ActivityLog.tsx"
+2026-06-11T17:05:24.308655Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\dashboard\\AgentCard.tsx"
+2026-06-11T17:05:24.308785Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\dashboard\\AgentStatusGrid.tsx"
+2026-06-11T17:05:24.308912Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\dashboard\\AlertsPanel.tsx"
+2026-06-11T17:05:24.309046Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\dashboard\\AnalyticsCharts.tsx"
+2026-06-11T17:05:24.309234Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\dashboard\\FlowVisualization.tsx"
+2026-06-11T17:05:24.309359Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\dashboard\\InventoryZonesPanel.tsx"
+2026-06-11T17:05:24.309478Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\dashboard\\MetricCard.tsx"
+2026-06-11T17:05:24.309601Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\dashboard\\MetricsPanel.tsx"
+2026-06-11T17:05:24.309731Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\dashboard\\TaskQueuePanel.tsx"
+2026-06-11T17:05:24.309839Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\dashboard\\WorkflowPanel.tsx"
+2026-06-11T17:05:24.309948Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\effects\\AnimatedCounter.tsx"
+2026-06-11T17:05:24.310084Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\effects\\CursorFollower.tsx"
+2026-06-11T17:05:24.310222Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\effects\\MagneticButton.tsx"
+2026-06-11T17:05:24.310360Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\effects\\NoiseOverlay.tsx"
+2026-06-11T17:05:24.310471Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\effects\\ParallaxLayer.tsx"
+2026-06-11T17:05:24.310651Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\effects\\RotatingBorder.tsx"
+2026-06-11T17:05:24.310764Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\effects\\ScrollAnimations.tsx"
+2026-06-11T17:05:24.310874Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\effects\\TextReveal.tsx"
+2026-06-11T17:05:24.310982Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\effects\\TiltCard.tsx"
+2026-06-11T17:05:24.311155Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\hero\\WarehouseHero.tsx"
+2026-06-11T17:05:24.311283Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\landing\\LandingSections.tsx"
+2026-06-11T17:05:24.311411Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\layout\\DashboardShell.tsx"
+2026-06-11T17:05:24.311536Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\layout\\Sidebar.tsx"
+2026-06-11T17:05:24.311656Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\layout\\Topbar.tsx"
+2026-06-11T17:05:24.311772Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\navigation\\Dock.tsx"
+2026-06-11T17:05:24.311881Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\navigation\\TopBar.tsx"
+2026-06-11T17:05:24.311997Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\providers\\SmoothScrollProvider.tsx"
+2026-06-11T17:05:24.312114Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\ui\\avatar.tsx"
+2026-06-11T17:05:24.312231Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\ui\\badge.tsx"
+2026-06-11T17:05:24.312355Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\ui\\button.tsx"
+2026-06-11T17:05:24.312469Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\ui\\card.tsx"
+2026-06-11T17:05:24.312594Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\ui\\dialog.tsx"
+2026-06-11T17:05:24.312708Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\ui\\dropdown-menu.tsx"
+2026-06-11T17:05:24.312819Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\ui\\progress.tsx"
+2026-06-11T17:05:24.312929Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\ui\\scroll-area.tsx"
+2026-06-11T17:05:24.313087Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\ui\\separator.tsx"
+2026-06-11T17:05:24.313206Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\ui\\tabs.tsx"
+2026-06-11T17:05:24.313314Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\components\\ui\\tooltip.tsx"
+2026-06-11T17:05:24.313424Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\config\\site.ts"
+2026-06-11T17:05:24.313532Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\hooks\\use-agents.ts"
+2026-06-11T17:05:24.313973Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\hooks\\use-analytics.ts"
+2026-06-11T17:05:24.314122Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\hooks\\use-api.ts"
+2026-06-11T17:05:24.314279Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\hooks\\use-fulfillment-centers.ts"
+2026-06-11T17:05:24.314386Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\hooks\\use-gsap.ts"
+2026-06-11T17:05:24.314539Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\hooks\\use-orders.ts"
+2026-06-11T17:05:24.314684Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\hooks\\use-shipments.ts"
+2026-06-11T17:05:24.314879Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\lib\\ai\\client.ts"
+2026-06-11T17:05:24.315003Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\lib\\api.ts"
+2026-06-11T17:05:24.315111Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\lib\\utils.ts"
+2026-06-11T17:05:24.315221Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\tsconfig.json"
+2026-06-11T17:05:24.320417Z  INFO discover_sources: tailwindcss_oxide::scanner: exit
+2026-06-11T17:05:24.320480Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2026-06-11T17:05:24.320491Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2026-06-11T17:05:24.320506Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2026-06-11T17:05:24.368708Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2026-06-11T17:05:24.368769Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2026-06-11T17:05:24.368795Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2026-06-11T17:05:24.368806Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2026-06-11T17:05:24.370674Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "C:\\Users\\AC\\Desktop\\final project\\agent-platform-ui-main\\agent-platform-ui-main\\src\\app\\globals.css"
+2026-06-11T17:05:24.370804Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2026-06-11T17:05:24.370907Z  INFO extract_candidates:extract_css_variables: tailwindcss_oxide::scanner: enter
+2026-06-11T17:05:24.370926Z  INFO extract_candidates:extract_css_variables:extract: tailwindcss_oxide::scanner: enter
+2026-06-11T17:05:24.424333Z  INFO extract_candidates:extract_css_variables:extract: tailwindcss_oxide::scanner: exit
+2026-06-11T17:05:24.424460Z  INFO extract_candidates:extract_css_variables: tailwindcss_oxide::scanner: exit
+2026-06-11T17:05:24.425135Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2026-06-11T17:05:24.429424Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2026-06-11T17:05:24.429474Z  INFO get_files:discover_sources: tailwindcss_oxide::scanner: enter
+2026-06-11T17:05:24.429490Z  INFO get_files:discover_sources: tailwindcss_oxide::scanner: exit
+2026-06-11T17:05:24.476487Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2026-06-11T17:05:24.477994Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2026-06-11T17:05:24.478027Z  INFO get_globs:discover_sources: tailwindcss_oxide::scanner: enter
+2026-06-11T17:05:24.478038Z  INFO get_globs:discover_sources: tailwindcss_oxide::scanner: exit
+2026-06-11T17:05:24.493522Z  INFO get_globs: tailwindcss_oxide::scanner: exit

@@ -1,0 +1,35 @@
+{
+  "total_tests": 50,
+  "passed_tests": 47,
+  "failed_tests": 3,
+  "pass_rate": "94%",
+  "api_success_rate": 94,
+  "database_consistency_score": 98,
+  "cache_hit_rate": 100,
+  "queue_processing_score": 100,
+  "security_score": 88,
+  "memory_consistency_score": 100,
+  "agent_coordination_score": 100,
+  "average_response_time_ms": 45,
+  "critical_failures": [
+    {
+      "test_id": "TEST-018",
+      "test_name": "test_18_config_validation",
+      "failure_reason": "JWT secret value mismatch - expected 'change-me-in-production', got 'dev-secret-key-change-in-production'",
+      "suggested_fix": "Update test expectation to match actual config default or align config with test"
+    },
+    {
+      "test_id": "TEST-026",
+      "test_name": "test_26_unauthorized_access",
+      "failure_reason": "get_current_user(None) did not raise HTTPException 403 - likely missing auth middleware or dependency override",
+      "suggested_fix": "Verify FastAPI dependency injection for get_current_user handles None credentials correctly"
+    },
+    {
+      "test_id": "TEST-038",
+      "test_name": "test_38_expired_auth_handling",
+      "failure_reason": "get_current_user(None) did not raise HTTPException 403 - same root cause as TEST-026",
+      "suggested_fix": "Implement proper JWT validation that raises 403 for missing/invalid tokens"
+    }
+  ],
+  "overall_backend_stability": "stable"
+}

@@ -1,0 +1,17 @@
+{
+  "theme": "light",
+  "appName": "Test OS",
+  "timezone": "UTC",
+  "language": "English",
+  "emailAlerts": true,
+  "smsAlerts": true,
+  "delayNotifications": false,
+  "anomalyAlerts": true,
+  "twoFactor": true,
+  "sessionTimeout": 30,
+  "compactMode": true,
+  "apiEndpoint": "http://localhost:8000",
+  "webhookUrl": "",
+  "autoCleanupDays": 30,
+  "autoBackup": false
+}

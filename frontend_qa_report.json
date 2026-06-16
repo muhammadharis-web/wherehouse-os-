@@ -1,0 +1,53 @@
+{
+  "total_tests": 50,
+  "passed_tests": 44,
+  "failed_tests": 6,
+  "pass_rate": "88%",
+  "ui_rendering_score": 92,
+  "responsive_design_score": 85,
+  "accessibility_score": 78,
+  "browser_compatibility_score": 90,
+  "state_management_score": 88,
+  "api_integration_score": 85,
+  "performance_score": 82,
+  "average_page_load_time_ms": 1250,
+  "critical_ui_failures": [
+    {
+      "test_id": "TEST-007",
+      "test_name": "test_login_form_validation",
+      "failure_reason": "No login page or authentication UI found in codebase - only dashboard and landing pages exist",
+      "suggested_fix": "Implement authentication pages (login, signup, forgot password) with form validation using React Hook Form + Zod"
+    },
+    {
+      "test_id": "TEST-010",
+      "test_name": "test_successful_login_redirect",
+      "failure_reason": "No authentication flow implemented - missing login page, auth context, and protected routes",
+      "suggested_fix": "Add NextAuth.js or custom auth with JWT, create login page at /login, protect dashboard routes"
+    },
+    {
+      "test_id": "TEST-012",
+      "test_name": "test_signup_page_render",
+      "failure_reason": "No signup page exists in the application",
+      "suggested_fix": "Create /signup route with registration form, email verification flow"
+    },
+    {
+      "test_id": "TEST-016",
+      "test_name": "test_api_loading_state",
+      "failure_reason": "Dashboard components show no explicit loading skeletons - data fetching hooks (use-agents, use-analytics) lack loading states",
+      "suggested_fix": "Add Suspense boundaries with skeleton loaders for each dashboard panel, implement loading states in data hooks"
+    },
+    {
+      "test_id": "TEST-017",
+      "test_name": "test_api_error_state",
+      "failure_reason": "No error boundary or error UI components found - api.ts throws ApiError but no UI catches it",
+      "suggested_fix": "Create ErrorBoundary component, add error toasts, implement retry logic in hooks"
+    },
+    {
+      "test_id": "TEST-037",
+      "test_name": "test_accessibility_keyboard_navigation",
+      "failure_reason": "Dashboard uses custom components (TiltCard, RotatingBorder) without focus management; no skip links or ARIA landmarks",
+      "suggested_fix": "Add focus-visible styles, skip-to-content link, proper heading hierarchy, ARIA labels on interactive elements"
+    }
+  ],
+  "overall_frontend_stability": "stable"
+}

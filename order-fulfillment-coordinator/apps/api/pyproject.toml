@@ -1,0 +1,62 @@
+[project]
+name = "order-fulfillment-coordinator"
+version = "0.1.0"
+description = "AI-driven Order Fulfillment Coordinator"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi[standard]>=0.115.0",
+    "uvicorn[standard]",
+    "openai-agents>=0.0.15",
+    "sqlalchemy[asyncio]>=2.0",
+    "asyncpg",
+    "alembic",
+    "pydantic-settings",
+    "celery[redis]",
+    "redis",
+    "python-jose[cryptography]",
+    "passlib[bcrypt]",
+    "httpx",
+    "twilio",
+    "sendgrid",
+    "email-validator>=2.3.0",
+    "qdrant-client>=1.8.0",
+    "openai>=1.30.0",
+    "aiosqlite>=0.22.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "ruff",
+    "mypy",
+    "locust",
+]
+
+[build-system]
+requires = ["setuptools>=75.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+ignore_missing_imports = true
+disable_error_code = [
+    "type-arg",
+    "no-untyped-def",
+    "untyped-decorator",
+    "import-untyped",
+    "import-not-found",
+]
+warn_unused_ignores = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
