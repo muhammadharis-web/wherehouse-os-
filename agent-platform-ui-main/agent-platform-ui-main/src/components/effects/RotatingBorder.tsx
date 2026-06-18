@@ -46,6 +46,7 @@ export function RotatingBorder({ children, className, speed = 4, ...props }: Rot
         position: "relative",
         borderRadius: "inherit",
       }}
+      suppressHydrationWarning
       {...props}
     >
       <div

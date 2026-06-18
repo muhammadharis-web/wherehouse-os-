@@ -220,23 +220,34 @@ def extract_notes(text: str) -> str | None:
     return None
 
 
+CREATE_KEYWORDS = ["create order", "place order", "new order", "make order", "add order", "order karo", "order place", "bhejo", "ship", "send package", "order banao", "banao"]
+LIST_KEYWORDS = ["list orders", "show orders", "all orders", "my orders", "orders dikhao", "orders list", "get orders"]
+STATUS_KEYWORDS = ["status", "track", "where is", "kahan hai", "update", "tracking"]
+HELP_KEYWORDS = ["help", "what can you do", "kya kar sakte", "commands", "options"]
+DELAYED_KEYWORDS = ["delayed", "delay"]
+PENDING_KEYWORDS = ["pending"]
+
 def detect_intent(text: str) -> str:
     lower = text.lower()
-    create_keywords = ["create order", "place order", "new order", "make order", "add order", "order karo", "order place", "bhejo", "ship", "send package", "order banao", "banao"]
-    list_keywords = ["list orders", "show orders", "all orders", "my orders", "orders dikhao", "orders list", "get orders"]
-    status_keywords = ["status", "track", "where is", "kahan hai", "update", "tracking"]
-    help_keywords = ["help", "what can you do", "kya kar sakte", "commands", "options"]
 
-    for kw in create_keywords:
+    is_delayed = any(kw in lower for kw in DELAYED_KEYWORDS)
+    is_pending = any(kw in lower for kw in PENDING_KEYWORDS)
+    is_list = any(kw in lower for kw in LIST_KEYWORDS)
+    is_status = any(kw in lower for kw in STATUS_KEYWORDS)
+
+    if (is_delayed or is_pending) and (is_list or is_status):
+        return "filter_orders"
+
+    for kw in CREATE_KEYWORDS:
         if kw in lower:
             return "create_order"
-    for kw in list_keywords:
+    for kw in LIST_KEYWORDS:
         if kw in lower:
             return "list_orders"
-    for kw in status_keywords:
+    for kw in STATUS_KEYWORDS:
         if kw in lower:
             return "check_status"
-    for kw in help_keywords:
+    for kw in HELP_KEYWORDS:
         if kw in lower:
             return "help"
     return "create_order"
@@ -297,6 +308,28 @@ async def chat(
         return ChatResponse(
             reply=f"Yeh rahahe tumhare recent orders ka status:\n\n{order_list}",
             action="check_status",
+        )
+
+    if intent == "filter_orders":
+        lower = message.lower()
+        is_delayed = any(kw in lower for kw in DELAYED_KEYWORDS)
+        filter_status = "delayed" if is_delayed else "pending"
+        orders = await service.list_orders(skip=0, limit=10, status_filter=filter_status)
+        total = await service.count_orders(status_filter=filter_status)
+        if not orders:
+            return ChatResponse(
+                reply=f"Filhaal koi **{filter_status}** orders nahi hain.",
+                action="filter_orders",
+                data={"orders": [], "total": 0},
+            )
+        order_list = "\n".join(
+            f"- **#{o.id[:8]}** | {o.customer_email} | {o.shipping_city}, {o.shipping_state} | {o.status}"
+            for o in orders[:5]
+        )
+        return ChatResponse(
+            reply=f"Yeh rahahe **{total} {filter_status}** orders:\n\n{order_list}",
+            action="filter_orders",
+            data={"total": total, "orders": [OrderRead.model_validate(o).model_dump(mode="json") for o in orders[:5]]},
         )
 
     email = extract_email(message)

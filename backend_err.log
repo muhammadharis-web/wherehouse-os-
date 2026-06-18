@@ -1,6 +1,6 @@
 INFO:     Will watch for changes in these directories: ['C:\\Users\\AC\\Desktop\\final project\\order-fulfillment-coordinator\\apps\\api']
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [9500] using WatchFiles
-INFO:     Started server process [11608]
+INFO:     Started reloader process [5692] using WatchFiles
+INFO:     Started server process [13984]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.

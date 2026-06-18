@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import json
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
 
 from fastapi import APIRouter, HTTPException, status
 from jose import jwt
@@ -76,6 +78,16 @@ async def login(body: LoginRequest) -> LoginResponse:
 
     user_id = body.email.replace("@", "_").replace(".", "_")
     now = datetime.now(timezone.utc)
+
+    settings_path = Path(__file__).resolve().parent.parent.parent.parent / "data" / f"settings_{user_id}.json"
+    session_timeout = settings.jwt_expiration_minutes
+    if settings_path.exists():
+        try:
+            user_settings = json.loads(settings_path.read_text("utf-8"))
+            session_timeout = int(user_settings.get("sessionTimeout", session_timeout))
+        except Exception:
+            pass
+
     token = jwt.encode(
         {
             "sub": user_id,
@@ -83,7 +95,7 @@ async def login(body: LoginRequest) -> LoginResponse:
             "name": user["name"],
             "role": user["role"],
             "iat": now,
-            "exp": now + timedelta(minutes=settings.jwt_expiration_minutes),
+            "exp": now + timedelta(minutes=session_timeout),
         },
         settings.jwt_secret,
         algorithm=settings.jwt_algorithm,

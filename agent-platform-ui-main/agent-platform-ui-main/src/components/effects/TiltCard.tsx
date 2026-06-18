@@ -40,7 +40,8 @@ export function TiltCard({ children, className, intensity = 8, ...props }: TiltC
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
       onKeyDown={onKeyDown}
-      className={className || undefined}
+      suppressHydrationWarning
+      {...(className ? { className } : {})}
       style={{ transition: "transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1)" }}
       {...props}
     >
