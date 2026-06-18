@@ -13,6 +13,7 @@ const SelectTrigger = React.forwardRef<
 >(({ className, children, error, ...props }, ref) => (
   <SelectPrimitive.Trigger
     ref={ref}
+    suppressHydrationWarning
     className={cn(
       "flex h-10 w-full items-center justify-between rounded-lg border bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
       error && "border-destructive focus:ring-destructive",

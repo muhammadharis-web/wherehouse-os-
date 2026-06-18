@@ -42,7 +42,7 @@ class Shipment(Base):
     carrier_name: Mapped[str] = mapped_column(String(100), nullable=False)
     tracking_number: Mapped[str] = mapped_column(String(255), nullable=False)
     status: Mapped[ShipmentStatus] = mapped_column(
-        Enum(ShipmentStatus, name="shipment_status"),
+        Enum(ShipmentStatus, name="shipment_status", values_callable=lambda x: [e.value for e in x]),
         default=ShipmentStatus.LABEL_CREATED,
         nullable=False,
     )

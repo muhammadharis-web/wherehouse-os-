@@ -11,7 +11,7 @@ from fulfillment.schemas.carrier import FulfillmentCenterRead
 router = APIRouter()
 
 
-@router.get("/", response_model=list[FulfillmentCenterRead])
+@router.get("", response_model=list[FulfillmentCenterRead])
 async def list_fulfillment_centers(
     db: AsyncSession = Depends(get_db),
     _user: dict[str, str] = Depends(get_current_user),

@@ -19,7 +19,7 @@ from fulfillment.services.order_service import OrderService
 router = APIRouter()
 
 
-@router.get("/", response_model=OrderListResponse)
+@router.get("", response_model=OrderListResponse)
 async def list_orders(
     skip: int = Query(0, ge=0),
     limit: int = Query(100, ge=1, le=500),
@@ -33,7 +33,7 @@ async def list_orders(
     return OrderListResponse(orders=orders, total=total)
 
 
-@router.post("/", response_model=OrderRead, status_code=status.HTTP_201_CREATED)
+@router.post("", response_model=OrderRead, status_code=status.HTTP_201_CREATED)
 async def create_order(
     payload: OrderCreate,
     db: AsyncSession = Depends(get_db),

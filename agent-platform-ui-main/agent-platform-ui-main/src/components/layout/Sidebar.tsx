@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 import {
   LayoutDashboard, Bot, GitBranch, Activity, Settings,
-  ChevronLeft, ChevronRight, Warehouse, ScrollText, BarChart3, Users,
+  ChevronLeft, ChevronRight, Warehouse, BarChart3, Users,
   Sun, Moon,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -18,7 +18,6 @@ const navItems = [
   { icon: GitBranch, label: "Workflows", href: "/dashboard/workflows" },
   { icon: Activity, label: "Monitoring", href: "/dashboard/monitoring" },
   { icon: BarChart3, label: "Analytics", href: "/dashboard/analytics" },
-  { icon: ScrollText, label: "Logs", href: "/dashboard/logs" },
   { icon: Users, label: "Team", href: "/dashboard/team" },
 ]
 

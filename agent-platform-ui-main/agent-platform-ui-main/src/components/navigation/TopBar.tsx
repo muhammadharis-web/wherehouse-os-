@@ -140,8 +140,6 @@ export function TopBar() {
             <Settings className="h-3.5 w-3.5" />
             Settings
           </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem className="text-destructive">Sign out</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </motion.header>

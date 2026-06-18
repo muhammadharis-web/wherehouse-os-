@@ -1,5 +1,5 @@
-export { default as proxy } from "next-auth/middleware"
+export function proxy() {}
 
 export const config = {
-  matcher: ["/dashboard/:path*"],
+  matcher: [],
 }

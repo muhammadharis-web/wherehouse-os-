@@ -1,10 +1,10 @@
-import { WarehouseHero } from "@/components/hero/WarehouseHero"
+import { LazyWarehouseHero } from "@/components/hero/LazyWarehouseHero"
 import { LandingSections } from "@/components/landing/LandingSections"
 
 export default function Home() {
   return (
     <>
-      <WarehouseHero />
+      <LazyWarehouseHero />
       <LandingSections />
     </>
   )
