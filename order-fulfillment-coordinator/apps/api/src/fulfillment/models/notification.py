@@ -4,7 +4,6 @@ from datetime import datetime
 from uuid import uuid4
 
 from sqlalchemy import Boolean, DateTime, String, Text, func
-from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
 
 from fulfillment.database import Base
@@ -14,16 +13,16 @@ class Notification(Base):
     __tablename__ = "notifications"
 
     id: Mapped[str] = mapped_column(
-        UUID(as_uuid=False),
+        String(36),
         primary_key=True,
         default=lambda: str(uuid4()),
     )
     order_id: Mapped[str | None] = mapped_column(
-        UUID(as_uuid=False),
+        String(36),
         nullable=True,
     )
     shipment_id: Mapped[str | None] = mapped_column(
-        UUID(as_uuid=False),
+        String(36),
         nullable=True,
     )
     recipient: Mapped[str] = mapped_column(String(255), nullable=False)

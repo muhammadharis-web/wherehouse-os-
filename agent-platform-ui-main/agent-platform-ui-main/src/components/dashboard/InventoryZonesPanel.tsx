@@ -4,7 +4,7 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
-import { MapPin, Warehouse } from "lucide-react"
+import { MapPin, Package } from "lucide-react"
 import { useFulfillmentCenters } from "@/hooks/use-fulfillment-centers"
 
 interface Zone {
@@ -46,7 +46,7 @@ export function InventoryZonesPanel() {
     <div className="rounded-xl border border-border/50 bg-card shadow-sm">
       <div className="flex items-center justify-between border-b border-border/30 px-5 py-3">
         <div className="flex items-center gap-2">
-          <Warehouse className="h-4 w-4 text-muted-foreground" />
+          <Package className="h-4 w-4 text-muted-foreground" />
           <h3 className="text-sm font-semibold">Inventory Zones</h3>
         </div>
         <Badge variant="secondary" className="text-[10px]">{zones.length} zones</Badge>

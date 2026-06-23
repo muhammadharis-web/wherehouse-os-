@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { motion } from "framer-motion"
-import { Warehouse, Bot, Package, TrendingUp, Shield, Zap } from "lucide-react"
+import { Package, Bot, TrendingUp, Shield, Zap } from "lucide-react"
 import { AnimatedCounter } from "@/components/effects/AnimatedCounter"
 import { Button } from "@/components/ui/button"
 import { ScrollAnimations } from "@/components/effects/ScrollAnimations"
@@ -93,7 +93,7 @@ export function LandingSections() {
           <ScrollAnimations animation="fadeUp">
             <div className="text-center mb-20">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/20 bg-accent/5 px-3 py-1 text-xs font-medium text-accent">
-                <Warehouse className="h-3 w-3" /> Platform capabilities
+                <Package className="h-3 w-3" /> Platform capabilities
               </span>
               <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-5xl">
                 Intelligence at every <span className="gradient-text">layer</span>

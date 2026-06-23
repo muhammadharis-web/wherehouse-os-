@@ -5,12 +5,12 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 import {
-  LayoutDashboard, Bot, GitBranch, BarChart3, Settings, Warehouse, ShoppingCart,
+  LayoutDashboard, Bot, GitBranch, BarChart3, Settings, Package, ShoppingCart,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const dockItems = [
-  { icon: Warehouse, label: "Home", href: "/" },
+  { icon: Package, label: "Home", href: "/" },
   { icon: LayoutDashboard, label: "Dashboard", href: "/dashboard" },
   { icon: ShoppingCart, label: "Orders", href: "/dashboard/orders" },
   { icon: Bot, label: "Agents", href: "/dashboard/agents" },

@@ -220,6 +220,7 @@ def extract_notes(text: str) -> str | None:
     return None
 
 
+PROCEED_KEYWORDS = ["proceed delivery", "prodey delyh", "proceed all", "route orders", "process pending", "process orders", "deliver all", "ship all", "route all", "dispatch", "fulfill", "process karo", "route karo"]
 CREATE_KEYWORDS = ["create order", "place order", "new order", "make order", "add order", "order karo", "order place", "bhejo", "ship", "send package", "order banao", "banao"]
 LIST_KEYWORDS = ["list orders", "show orders", "all orders", "my orders", "orders dikhao", "orders list", "get orders"]
 STATUS_KEYWORDS = ["status", "track", "where is", "kahan hai", "update", "tracking"]
@@ -238,6 +239,9 @@ def detect_intent(text: str) -> str:
     if (is_delayed or is_pending) and (is_list or is_status):
         return "filter_orders"
 
+    for kw in PROCEED_KEYWORDS:
+        if kw in lower:
+            return "proceed_delivery"
     for kw in CREATE_KEYWORDS:
         if kw in lower:
             return "create_order"
@@ -250,7 +254,7 @@ def detect_intent(text: str) -> str:
     for kw in HELP_KEYWORDS:
         if kw in lower:
             return "help"
-    return "create_order"
+    return "help"
 
 
 @router.post("/", response_model=ChatResponse)
@@ -269,10 +273,44 @@ async def chat(
                 "Mujhe yeh commands samajh aate hain:\n\n"
                 "**Create Order** - Example: \"Create order for ahmed@gmail.com, ship to House 5, Karachi, Sindh 75300, weight 2kg\"\n"
                 "**List Orders** - Example: \"Show all orders\" or \"List orders\"\n"
-                "**Check Status** - Example: \"What is the status of my orders?\"\n\n"
+                "**Check Status** - Example: \"What is the status of my orders?\"\n"
+                "**Proceed Delivery** - Example: \"Proceed delivery\" ya \"Route all pending orders\"\n\n"
                 "Aap naturally baat kar sakte hain, main order details khud samajh jaunga!"
             ),
             action="help",
+        )
+
+    if intent == "proceed_delivery":
+        pending = await service.list_orders(skip=0, limit=50, status_filter="pending")
+        if not pending:
+            return ChatResponse(
+                reply="Filhaal koi **pending** orders nahi hain jo process kiye ja sakte.",
+                action="proceed_delivery",
+            )
+        routed = []
+        failed = []
+        for o in pending:
+            try:
+                service = OrderService(db)
+                result = await service.route_order(o.id)
+                routed.append(result)
+            except ValueError as e:
+                failed.append({"id": o.id[:8], "reason": str(e)[:80]})
+        reply_parts = []
+        if routed:
+            reply_parts.append(f"✅ **{len(routed)}** orders successfully route aur process ho gaye!")
+            for r in routed[:10]:
+                reply_parts.append(
+                    f"- **#{r.order_id[:8]}** → {r.carrier_name} | Tracking: {r.tracking_number}"
+                )
+        if failed:
+            reply_parts.append(f"❌ **{len(failed)}** orders fail hue:")
+            for f in failed[:5]:
+                reply_parts.append(f"- **#{f['id']}**: {f['reason']}")
+        return ChatResponse(
+            reply="\n".join(reply_parts),
+            action="proceed_delivery",
+            data={"routed": len(routed), "failed": len(failed)},
         )
 
     if intent == "list_orders":

@@ -4,7 +4,6 @@ from datetime import datetime
 from uuid import uuid4
 
 from sqlalchemy import Boolean, DateTime, Float, String, func
-from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
 
 from fulfillment.database import Base
@@ -14,7 +13,7 @@ class CarrierRate(Base):
     __tablename__ = "carrier_rates"
 
     id: Mapped[str] = mapped_column(
-        UUID(as_uuid=False),
+        String(36),
         primary_key=True,
         default=lambda: str(uuid4()),
     )

@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from uuid import UUID
-
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -45,12 +43,12 @@ async def create_order(
 
 @router.get("/{order_id}", response_model=OrderRead)
 async def get_order(
-    order_id: UUID,
+    order_id: str,
     db: AsyncSession = Depends(get_db),
     _user: dict[str, str] = Depends(get_current_user),
 ) -> OrderRead:
     service = OrderService(db)
-    order = await service.get_order(str(order_id))
+    order = await service.get_order(order_id)
     if order is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Order not found")
     return order
@@ -58,13 +56,13 @@ async def get_order(
 
 @router.patch("/{order_id}", response_model=OrderRead)
 async def update_order(
-    order_id: UUID,
+    order_id: str,
     payload: OrderUpdate,
     db: AsyncSession = Depends(get_db),
     _user: dict[str, str] = Depends(get_current_user),
 ) -> OrderRead:
     service = OrderService(db)
-    order = await service.update_order(str(order_id), payload)
+    order = await service.update_order(order_id, payload)
     if order is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Order not found")
     return order
@@ -72,25 +70,25 @@ async def update_order(
 
 @router.delete("/{order_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_order(
-    order_id: UUID,
+    order_id: str,
     db: AsyncSession = Depends(get_db),
     _user: dict[str, str] = Depends(get_current_user),
 ) -> None:
     service = OrderService(db)
-    deleted = await service.delete_order(str(order_id))
+    deleted = await service.delete_order(order_id)
     if not deleted:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Order not found")
 
 
 @router.post("/{order_id}/route", response_model=OrderRouteResponse)
 async def route_order(
-    order_id: UUID,
+    order_id: str,
     payload: OrderRouteRequest | None = None,
     db: AsyncSession = Depends(get_db),
     _user: dict[str, str] = Depends(get_current_user),
 ) -> OrderRouteResponse:
     service = OrderService(db)
     try:
-        return await service.route_order(str(order_id), payload)
+        return await service.route_order(order_id, payload)
     except ValueError as e:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))

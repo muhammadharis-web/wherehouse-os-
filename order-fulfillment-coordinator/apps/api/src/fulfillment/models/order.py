@@ -6,7 +6,6 @@ from typing import TYPE_CHECKING
 from uuid import uuid4
 
 from sqlalchemy import DateTime, Enum, Float, ForeignKey, String, Text, func
-from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from fulfillment.database import Base
@@ -29,7 +28,7 @@ class Order(Base):
     __tablename__ = "orders"
 
     id: Mapped[str] = mapped_column(
-        UUID(as_uuid=False),
+        String(36),
         primary_key=True,
         default=lambda: str(uuid4()),
     )
@@ -49,12 +48,12 @@ class Order(Base):
         nullable=False,
     )
     fulfillment_center_id: Mapped[str | None] = mapped_column(
-        UUID(as_uuid=False),
+        String(36),
         ForeignKey("fulfillment_centers.id", ondelete="SET NULL"),
         nullable=True,
     )
     carrier_id: Mapped[str | None] = mapped_column(
-        UUID(as_uuid=False),
+        String(36),
         ForeignKey("carrier_rates.id", ondelete="SET NULL"),
         nullable=True,
     )

@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 import {
   LayoutDashboard, Bot, GitBranch, Activity, Settings,
-  ChevronLeft, ChevronRight, Warehouse, BarChart3, Users,
+  ChevronLeft, ChevronRight, Package, BarChart3, Users,
   Sun, Moon,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -41,7 +41,7 @@ export function Sidebar() {
     >
       <div className="flex h-14 items-center gap-3 border-b border-sidebar-border px-4">
         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-accent to-primary shadow-lg">
-          <Warehouse className="h-4 w-4 text-white" />
+          <Package className="h-4 w-4 text-white" />
         </div>
         <AnimatePresence mode="wait">
           {!collapsed && (
