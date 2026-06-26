@@ -63,7 +63,7 @@ export function AlertsPanel() {
   }
 
   return (
-    <div className="rounded-xl border border-border/50 bg-card shadow-sm">
+    <div className="rounded-xl glass-card">
       <div className="flex items-center justify-between border-b border-border/30 px-5 py-3">
         <div className="flex items-center gap-2">
           <Bell className="h-4 w-4 text-muted-foreground" />

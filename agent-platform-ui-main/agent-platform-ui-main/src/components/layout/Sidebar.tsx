@@ -35,7 +35,7 @@ export function Sidebar() {
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
       className={cn(
-        "fixed left-0 top-0 z-40 flex h-screen flex-col border-r border-sidebar-border bg-sidebar transition-all duration-300",
+        "fixed left-0 top-0 z-40 flex h-screen flex-col glass-sidebar transition-all duration-300",
         collapsed ? "w-[68px]" : "w-[240px]"
       )}
     >

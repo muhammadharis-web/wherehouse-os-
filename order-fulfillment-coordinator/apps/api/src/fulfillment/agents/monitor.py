@@ -13,6 +13,12 @@ logger = logging.getLogger(__name__)
 MAX_SHIPMENTS_PER_CYCLE = 200
 
 
+def _ensure_aware(dt: datetime | None) -> datetime | None:
+    if dt is not None and dt.tzinfo is None:
+        return dt.replace(tzinfo=timezone.utc)
+    return dt
+
+
 class MonitorAgent:
     def __init__(self, db: AsyncSession) -> None:
         self.db = db
@@ -51,14 +57,17 @@ class MonitorAgent:
         reason = None
         risk_score = 0.0
 
-        if shipment.estimated_delivery and now > shipment.estimated_delivery:
-            diff_hours = (now - shipment.estimated_delivery).total_seconds() / 3600
+        est_delivery = _ensure_aware(shipment.estimated_delivery)
+        last_polled = _ensure_aware(shipment.last_polled_at)
+
+        if est_delivery and now > est_delivery:
+            diff_hours = (now - est_delivery).total_seconds() / 3600
             is_delayed = True
             reason = f"Past estimated delivery by {diff_hours:.1f} hours"
             risk_score = min(diff_hours / 24, 1.0)
 
-        if not is_delayed and shipment.last_polled_at:
-            hours_since_poll = (now - shipment.last_polled_at).total_seconds() / 3600
+        if not is_delayed and last_polled:
+            hours_since_poll = (now - last_polled).total_seconds() / 3600
             if hours_since_poll > 24:
                 is_delayed = True
                 reason = f"No status update in {hours_since_poll:.1f} hours"

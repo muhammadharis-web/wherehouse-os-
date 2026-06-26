@@ -45,7 +45,7 @@ export function TopBar() {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-      className="fixed top-0 right-0 left-0 z-40 flex h-14 items-center justify-end gap-3 border-b border-border/20 bg-background/40 px-6 backdrop-blur-2xl"
+      className="fixed top-0 right-0 left-0 z-40 flex h-14 items-center justify-end gap-3 px-6 glass-topbar"
     >
       <div className="relative flex-1 max-w-md">
         <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground pointer-events-none" />
@@ -54,7 +54,7 @@ export function TopBar() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search agents, workflows..."
-          className="h-9 w-full rounded-xl border border-border/30 bg-muted/30 pl-9 pr-8 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent/40 focus:outline-none focus:ring-1 focus:ring-accent/20 transition-all backdrop-blur-sm"
+          className="h-9 w-full rounded-xl glass-input pl-9 pr-8 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none transition-all"
           suppressHydrationWarning
         />
         {query && (
@@ -83,7 +83,7 @@ export function TopBar() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -8, scale: 0.95 }}
               transition={{ duration: 0.15 }}
-              className="absolute right-0 top-full mt-2 w-80 rounded-xl border border-border/50 bg-card shadow-xl z-50 overflow-hidden"
+              className="absolute right-0 top-full mt-2 w-80 rounded-xl glass-card-strong shadow-xl z-50 overflow-hidden"
             >
               <div className="flex items-center justify-between px-4 py-3 border-b border-border/30">
                 <span className="text-sm font-semibold">Notifications</span>

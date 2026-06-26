@@ -107,11 +107,11 @@ export default function DashboardPage() {
           </div>
           <ErrorBoundary>
             <Suspense fallback={<PanelSkeleton />}>
-              <RotatingBorder className="rounded-xl">
-                <div className="rounded-xl bg-card/80 backdrop-blur-sm">
+              <div className="glass-accent-border rounded-xl">
+                <div className="rounded-xl glass-card-strong">
                   <AgentStatusGrid />
                 </div>
-              </RotatingBorder>
+              </div>
             </Suspense>
           </ErrorBoundary>
         </div>
@@ -143,11 +143,11 @@ export default function DashboardPage() {
           <h2 className="text-sm font-semibold text-foreground">Inventory Zones</h2>
           <ErrorBoundary>
             <Suspense fallback={<PanelSkeleton />}>
-              <RotatingBorder className="rounded-xl">
-                <div className="rounded-xl bg-card/80 backdrop-blur-sm">
+              <div className="glass-accent-border rounded-xl">
+                <div className="rounded-xl glass-card-strong">
                   <InventoryZonesPanel />
                 </div>
-              </RotatingBorder>
+              </div>
             </Suspense>
           </ErrorBoundary>
         </div>

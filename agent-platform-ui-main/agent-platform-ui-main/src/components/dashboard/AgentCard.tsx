@@ -37,13 +37,12 @@ export function AgentCard({ agent, index }: AgentCardProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.08, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
       onClick={() => router.push("/dashboard/agents")}
-      className="group relative rounded-xl border border-border/50 bg-card p-5 shadow-sm transition-all duration-300 hover:border-accent/30 hover:shadow-[0_0_30px_-5px_rgba(139,92,246,0.1)] cursor-pointer"
+      className="group relative rounded-xl glass-card cursor-pointer"
     >
-      <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-accent/[0.02] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       <div className="relative z-10">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">
-            <div className={cn("flex h-10 w-10 items-center justify-center rounded-lg border border-border/50", status.bg)}>
+            <div className={cn("flex h-10 w-10 items-center justify-center rounded-lg glass-card-strong", status.bg)}>
               <Bot className={cn("h-5 w-5", status.color)} />
             </div>
             <div>

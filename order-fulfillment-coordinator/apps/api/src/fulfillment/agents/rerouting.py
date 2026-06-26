@@ -17,6 +17,12 @@ logger = logging.getLogger(__name__)
 COST_INCREASE_LIMIT_PCT = 40.0
 
 
+def _ensure_aware(dt: datetime | None) -> datetime | None:
+    if dt is not None and dt.tzinfo is None:
+        return dt.replace(tzinfo=timezone.utc)
+    return dt
+
+
 class ReroutingAgent:
     def __init__(self, db: AsyncSession) -> None:
         self.db = db
@@ -57,9 +63,10 @@ class ReroutingAgent:
                 "reason": f"Alternative cost increase ({cost_increase_pct:.1f}%) exceeds limit ({max_allowed}%)",
             }
 
+        est = _ensure_aware(shipment.estimated_delivery)
         delta_days = abs(
-            (shipment.estimated_delivery - datetime.now(timezone.utc)).total_seconds() / 86400
-        ) if shipment.estimated_delivery else 0
+            (est - datetime.now(timezone.utc)).total_seconds() / 86400
+        ) if est else 0
 
         return {
             "should_reroute": True,

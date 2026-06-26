@@ -30,7 +30,7 @@ export function Dock() {
       transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1], delay: 0.5 }}
       className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2"
     >
-      <div className="flex items-end gap-1.5 rounded-2xl border border-border/40 bg-background/70 px-3 py-2 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+      <div className="flex items-end gap-1.5 rounded-2xl glass-dock px-3 py-2">
         {dockItems.map((item, i) => {
           const isActive = pathname === item.href
           const isHovered = hoveredIndex === i
@@ -51,7 +51,7 @@ export function Dock() {
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 8 }}
-                    className="absolute -top-8 whitespace-nowrap rounded-lg border border-border/30 bg-card px-2.5 py-1 text-[10px] font-medium text-foreground shadow-lg backdrop-blur-xl"
+                    className="absolute -top-8 whitespace-nowrap rounded-lg glass-card-strong px-2.5 py-1 text-[10px] font-medium text-foreground shadow-lg"
                   >
                     {item.label}
                   </motion.span>

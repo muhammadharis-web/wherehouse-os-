@@ -7,7 +7,7 @@ import { SearchProvider } from "@/contexts/SearchContext"
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <SearchProvider>
-      <div className="min-h-screen pb-24 bg-grid-subtle" role="region" aria-label="Dashboard">
+      <div className="min-h-screen pb-24 bg-grid-subtle bg-ambient" role="region" aria-label="Dashboard">
         <a href="#dashboard-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-white">
           Skip to dashboard content
         </a>
