@@ -71,7 +71,12 @@ export default function OrdersPage() {
   const { data, loading, error, refetch } = useOrders()
 
   return (
-    <div className="space-y-6">
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+      className="space-y-6"
+    >
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -83,14 +88,14 @@ export default function OrdersPage() {
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="text-xl font-semibold tracking-tight text-foreground">Orders</h1>
+              <h1 className="text-[22px] font-bold tracking-tight text-foreground">Orders</h1>
               {data && (
-                <Badge variant="secondary" className="text-[10px]">
+                <Badge variant="secondary" className="text-[10px] font-medium">
                   {data.total} total
                 </Badge>
               )}
             </div>
-            <p className="text-sm text-muted-foreground">Manage and track all customer orders</p>
+            <p className="text-sm text-muted-foreground/80 mt-0.5">Manage and track all customer orders</p>
           </div>
         </div>
         <Button variant="outline" size="sm" className="h-8 gap-1.5 text-xs rounded-xl" onClick={refetch} disabled={loading}>
@@ -172,6 +177,6 @@ export default function OrdersPage() {
           </div>
         </motion.div>
       )}
-    </div>
+    </motion.div>
   )
 }

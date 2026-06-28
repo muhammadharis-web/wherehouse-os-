@@ -28,9 +28,9 @@ export function Dock() {
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1], delay: 0.5 }}
-      className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2"
+      className="fixed bottom-4 sm:bottom-6 left-1/2 z-50 -translate-x-1/2"
     >
-      <div className="flex items-end gap-1.5 rounded-2xl glass-dock px-3 py-2">
+      <div className="flex items-end gap-1 sm:gap-1.5 rounded-2xl glass-dock px-2 sm:px-3 py-2 shadow-2xl shadow-accent/5">
         {dockItems.map((item, i) => {
           const isActive = pathname === item.href
           const isHovered = hoveredIndex === i
@@ -51,7 +51,7 @@ export function Dock() {
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 8 }}
-                    className="absolute -top-8 whitespace-nowrap rounded-lg glass-card-strong px-2.5 py-1 text-[10px] font-medium text-foreground shadow-lg"
+                    className="absolute -top-8 whitespace-nowrap rounded-lg glass-card-strong px-2.5 py-1 text-[10px] font-medium text-foreground shadow-lg border border-border/30"
                   >
                     {item.label}
                   </motion.span>
@@ -61,7 +61,7 @@ export function Dock() {
                 animate={{ scale }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 className={cn(
-                  "relative flex h-10 w-10 items-center justify-center rounded-xl transition-colors duration-200",
+                  "relative flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl transition-all duration-200",
                   isActive
                     ? "bg-accent text-white shadow-lg shadow-accent/25"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted/50"

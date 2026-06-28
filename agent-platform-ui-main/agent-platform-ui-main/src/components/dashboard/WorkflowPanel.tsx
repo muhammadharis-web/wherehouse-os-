@@ -33,34 +33,48 @@ export function WorkflowPanel() {
 
   return (
     <div className="rounded-xl glass-card">
-      <div className="flex items-center justify-between border-b border-border/30 px-5 py-3">
-        <div className="flex items-center gap-2"><GitBranch className="h-4 w-4 text-muted-foreground" /><h3 className="text-sm font-semibold">Active Workflows</h3></div>
-        <Badge variant="secondary" className="text-[10px]">{filtered.length} workflows</Badge>
+      <div className="flex items-center justify-between border-b border-border/30 px-6 py-4">
+        <div className="flex items-center gap-2.5"><GitBranch className="h-4 w-4 text-muted-foreground" /><h3 className="text-sm font-semibold text-foreground">Active Workflows</h3></div>
+        <Badge variant="secondary" className="text-[10px] font-medium">{filtered.length} workflows</Badge>
       </div>
       <ScrollArea className="h-[320px]">
         <div className="divide-y divide-border/30">
           {filtered.map((wf, i) => {
             const StatusIcon = statusIcons[wf.status]
             return (
-              <motion.div key={wf.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.08 }}
-                onMouseEnter={() => setHoveredId(wf.id)} onMouseLeave={() => setHoveredId(null)}
-                className={cn("relative px-5 py-4 transition-all duration-200", hoveredId === wf.id && "bg-muted/30")}
+              <motion.div
+                key={wf.id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.06, duration: 0.3 }}
+                onMouseEnter={() => setHoveredId(wf.id)}
+                onMouseLeave={() => setHoveredId(null)}
+                className={cn("relative px-5 py-4 transition-all duration-200 cursor-default", hoveredId === wf.id && "bg-muted/30")}
               >
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
-                    <StatusIcon className={cn("h-4 w-4", wf.status === "running" && "text-success", wf.status === "paused" && "text-warning", wf.status === "completed" && "text-info")} />
+                    <motion.div
+                      animate={wf.status === "running" ? { rotate: [0, 360] } : {}}
+                      transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                    >
+                      <StatusIcon className={cn("h-4 w-4", wf.status === "running" && "text-success", wf.status === "paused" && "text-warning", wf.status === "completed" && "text-info")} />
+                    </motion.div>
                     <span className="text-sm font-medium text-foreground">{wf.name}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-xs text-muted-foreground">{wf.agents} agents</span>
-                    <Button variant="ghost" size="icon" className="h-7 w-7">
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      className="flex h-7 w-7 items-center justify-center rounded-lg hover:bg-muted/50 transition-colors"
+                    >
                       {wf.status === "running" ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5" />}
-                    </Button>
+                    </motion.button>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
                   <Progress value={wf.progress} className="h-1.5 flex-1" />
-                  <span className="text-xs font-medium text-muted-foreground w-8 text-right">{wf.progress}%</span>
+                  <span className="text-xs font-medium text-muted-foreground w-8 text-right tabular-nums">{wf.progress}%</span>
                 </div>
                 <div className="mt-1.5 flex items-center gap-1">
                   <Clock className="h-3 w-3 text-muted-foreground" />

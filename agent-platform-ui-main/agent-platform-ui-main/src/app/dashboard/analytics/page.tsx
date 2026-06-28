@@ -8,7 +8,12 @@ import { Button } from "@/components/ui/button"
 
 export default function AnalyticsPage() {
   return (
-    <div className="space-y-6">
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+      className="space-y-6"
+    >
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -33,6 +38,6 @@ export default function AnalyticsPage() {
       </motion.div>
 
       <AnalyticsCharts />
-    </div>
+    </motion.div>
   )
 }

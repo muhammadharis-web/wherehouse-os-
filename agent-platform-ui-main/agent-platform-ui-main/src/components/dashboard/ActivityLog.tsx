@@ -94,12 +94,12 @@ export function ActivityLog() {
 
   return (
     <div className="rounded-xl glass-card">
-      <div className="flex items-center justify-between border-b border-border/30 px-5 py-3">
-        <div className="flex items-center gap-2">
+      <div className="flex items-center justify-between border-b border-border/30 px-6 py-4">
+        <div className="flex items-center gap-2.5">
           <Bot className="h-4 w-4 text-muted-foreground" />
-          <h3 className="text-sm font-semibold">Activity Log</h3>
+          <h3 className="text-sm font-semibold text-foreground">Activity Log</h3>
         </div>
-        <Badge variant="secondary" className="text-[10px]">Live</Badge>
+        <Badge variant="secondary" className="text-[10px] font-medium">Live</Badge>
       </div>
       <ScrollArea className="h-[320px]">
         <div className="space-y-1 p-2">
@@ -109,10 +109,11 @@ export function ActivityLog() {
             return (
               <motion.div
                 key={log.id}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.05 }}
-                className="group flex items-start gap-3 rounded-lg px-3 py-2.5 transition-colors hover:bg-muted/50"
+                initial={{ opacity: 0, x: -10, scale: 0.95 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                transition={{ delay: i * 0.04, duration: 0.3 }}
+                whileHover={{ x: 2, transition: { duration: 0.1 } }}
+                className="group flex items-start gap-3 rounded-lg px-3 py-2.5 transition-colors hover:bg-muted/50 cursor-default"
               >
                 <div className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-full", config.bg)}>
                   <Icon className={cn("h-3.5 w-3.5", config.color)} />

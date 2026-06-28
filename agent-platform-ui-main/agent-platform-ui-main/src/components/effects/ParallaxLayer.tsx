@@ -19,7 +19,7 @@ export function ParallaxLayer({ children, speed = 0.5, className }: ParallaxLaye
 
   return (
     <div ref={ref} className={className}>
-      <motion.div style={{ y }}>
+      <motion.div style={{ y }} transition={{ type: "spring", stiffness: 100, damping: 30 }}>
         {children}
       </motion.div>
     </div>

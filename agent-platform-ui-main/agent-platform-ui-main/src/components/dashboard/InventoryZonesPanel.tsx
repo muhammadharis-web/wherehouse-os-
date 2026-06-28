@@ -44,12 +44,12 @@ export function InventoryZonesPanel() {
 
   return (
     <div className="rounded-xl glass-card">
-      <div className="flex items-center justify-between border-b border-border/30 px-5 py-3">
-        <div className="flex items-center gap-2">
+      <div className="flex items-center justify-between border-b border-border/30 px-6 py-4">
+        <div className="flex items-center gap-2.5">
           <Package className="h-4 w-4 text-muted-foreground" />
-          <h3 className="text-sm font-semibold">Inventory Zones</h3>
+          <h3 className="text-sm font-semibold text-foreground">Inventory Zones</h3>
         </div>
-        <Badge variant="secondary" className="text-[10px]">{zones.length} zones</Badge>
+        <Badge variant="secondary" className="text-[10px] font-medium">{zones.length} zones</Badge>
       </div>
       <div className="divide-y divide-border/30">
         {zones.map((zone, i) => (
@@ -64,19 +64,29 @@ export function InventoryZonesPanel() {
           >
             <div className="flex items-center justify-between mb-1.5">
               <div className="flex items-center gap-2">
-                <MapPin
-                  className={cn(
-                    "h-3.5 w-3.5",
-                    zone.status === "optimal" && "text-success",
-                    zone.status === "warning" && "text-warning",
-                    zone.status === "critical" && "text-destructive"
-                  )}
-                />
+                <motion.div
+                  animate={zone.status === "critical" ? { scale: [1, 1.2, 1] } : {}}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <MapPin
+                    className={cn(
+                      "h-3.5 w-3.5",
+                      zone.status === "optimal" && "text-success",
+                      zone.status === "warning" && "text-warning",
+                      zone.status === "critical" && "text-destructive"
+                    )}
+                  />
+                </motion.div>
                 <span className="text-sm font-medium text-foreground">{zone.name}</span>
               </div>
-              <span className={cn("text-[10px] font-medium px-2 py-0.5 rounded-full border", statusColors[zone.status])}>
+              <motion.span
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: i * 0.06 + 0.2 }}
+                className={cn("text-[10px] font-medium px-2 py-0.5 rounded-full border", statusColors[zone.status])}
+              >
                 {zone.status}
-              </span>
+              </motion.span>
             </div>
             <div className="flex items-center gap-3 pl-5.5">
               <div className="flex-1 h-1.5 rounded-full bg-muted overflow-hidden">

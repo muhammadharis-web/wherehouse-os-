@@ -1,11 +1,16 @@
 import { NextRequest } from "next/server"
-import { streamChat } from "@/lib/ai/client"
+import { streamChat, type Message } from "@/lib/ai/client"
 
 const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:8000"
 
 export async function POST(req: NextRequest) {
   try {
-    const { messages } = (await req.json()) as { messages: Array<{ role: string; content: string }> }
+    const body = (await req.json()) as { messages: Partial<Message>[] }
+    const messages: Message[] = (body.messages || []).map((m, i) => ({
+      id: m.id || `msg-${i}`,
+      role: (m.role as Message["role"]) || "user",
+      content: m.content || "",
+    }))
 
     const lastUserMsg = [...messages].reverse().find(m => m.role === "user")
     if (!lastUserMsg) {
@@ -20,17 +25,17 @@ export async function POST(req: NextRequest) {
 
     if (backendRes.ok) {
       const data = await backendRes.json()
-      const reply = data.reply || ""
+      const replyText = data.reply || ""
 
-      const encoder = new TextEncoder()
-      const readable = new ReadableStream({
+      const enc = new TextEncoder()
+      const stream = new ReadableStream({
         start(controller) {
-          controller.enqueue(encoder.encode(reply))
+          controller.enqueue(enc.encode(replyText))
           controller.close()
         },
       })
 
-      return new Response(readable, {
+      return new Response(stream, {
         headers: {
           "Content-Type": "text/plain; charset=utf-8",
           "Cache-Control": "no-cache",
@@ -38,27 +43,27 @@ export async function POST(req: NextRequest) {
       })
     }
 
-    const stream = await streamChat(messages)
+    const aiStream = await streamChat(messages)
 
-    const encoder = new TextEncoder()
-    const readable = new ReadableStream({
+    const enc = new TextEncoder()
+    const stream = new ReadableStream({
       async start(controller) {
         try {
-          for await (const chunk of stream) {
+          for await (const chunk of aiStream) {
             const content = chunk.choices?.[0]?.delta?.content || ""
             if (content) {
-              controller.enqueue(encoder.encode(content))
+              controller.enqueue(enc.encode(content))
             }
           }
         } catch {
-          controller.enqueue(encoder.encode("Sorry, I couldn't process that request."))
+          controller.enqueue(enc.encode("Sorry, I couldn't process that request."))
         } finally {
           controller.close()
         }
       },
     })
 
-    return new Response(readable, {
+    return new Response(stream, {
       headers: {
         "Content-Type": "text/plain; charset=utf-8",
         "Cache-Control": "no-cache",

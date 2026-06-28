@@ -64,15 +64,15 @@ export function AlertsPanel() {
 
   return (
     <div className="rounded-xl glass-card">
-      <div className="flex items-center justify-between border-b border-border/30 px-5 py-3">
-        <div className="flex items-center gap-2">
+      <div className="flex items-center justify-between border-b border-border/30 px-6 py-4">
+        <div className="flex items-center gap-2.5">
           <Bell className="h-4 w-4 text-muted-foreground" />
-          <h3 className="text-sm font-semibold">Alerts</h3>
+          <h3 className="text-sm font-semibold text-foreground">Alerts</h3>
           <Badge variant="destructive" className="text-[10px] ml-1">
             {visibleAlerts.filter((a) => a.type === "critical").length} critical
           </Badge>
         </div>
-        <Button variant="ghost" size="sm" className="h-7 text-xs">Dismiss All</Button>
+        <Button variant="ghost" size="sm" className="h-7 text-xs font-medium">Dismiss All</Button>
       </div>
       <ScrollArea className="h-[340px]">
         <div className="space-y-1 p-2">
@@ -85,10 +85,11 @@ export function AlertsPanel() {
               return (
                 <motion.div
                   key={alert.id}
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0, x: 100 }}
-                  transition={{ duration: 0.3 }}
+                  initial={{ opacity: 0, height: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, height: "auto", scale: 1 }}
+                  exit={{ opacity: 0, height: 0, x: 100, scale: 0.95 }}
+                  transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+                  layout
                   className={cn("group relative flex items-start gap-3 rounded-lg border px-3 py-3 transition-all", style.border, style.bg)}
                 >
                   <div className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-full", `${style.bg} ${style.icon}`)}>
