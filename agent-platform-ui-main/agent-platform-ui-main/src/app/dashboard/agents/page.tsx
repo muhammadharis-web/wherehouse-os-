@@ -24,7 +24,13 @@ export default function AgentsPage() {
   }
 
   return (
-    <div className="space-y-8" key={refreshKey}>
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+      className="space-y-8"
+      key={refreshKey}
+    >
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -35,10 +41,10 @@ export default function AgentsPage() {
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-accent to-primary shadow-lg">
               <Users className="h-4 w-4 text-white" />
             </div>
-            <div>
-              <h1 className="text-xl font-semibold tracking-tight text-foreground">Agents</h1>
-              <p className="text-sm text-muted-foreground">Manage and monitor all warehouse agents</p>
-            </div>
+              <div>
+                <h1 className="text-[22px] font-bold tracking-tight text-foreground">Agents</h1>
+                <p className="text-sm text-muted-foreground/80 mt-0.5">Manage and monitor all warehouse agents</p>
+              </div>
           </div>
         </div>
         <div className="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
@@ -91,6 +97,6 @@ export default function AgentsPage() {
           <AgentStatusGrid key={refreshKey} />
         </ErrorBoundary>
       </div>
-    </div>
+    </motion.div>
   )
 }

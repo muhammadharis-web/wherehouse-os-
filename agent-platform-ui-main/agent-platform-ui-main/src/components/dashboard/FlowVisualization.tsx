@@ -70,10 +70,23 @@ const statusColors = {
 
 export function FlowVisualization() {
   const [dashOffset, setDashOffset] = useState(0)
+  const [particles, setParticles] = useState<{ id: number; x: number; y: number; size: number; speed: number; delay: number }[]>([])
 
   useEffect(() => {
-    const interval = setInterval(() => setDashOffset((prev) => (prev + 1) % 100), 60)
+    const interval = setInterval(() => setDashOffset((prev) => (prev + 1) % 100), 50)
     return () => clearInterval(interval)
+  }, [])
+
+  useEffect(() => {
+    const p = Array.from({ length: 20 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 2 + 0.5,
+      speed: Math.random() * 0.3 + 0.1,
+      delay: Math.random() * 5,
+    }))
+    setParticles(p)
   }, [])
 
   const getNodeCenter = (id: string) => {
@@ -89,11 +102,11 @@ export function FlowVisualization() {
             <GitBranch className="h-4 w-4 text-accent" />
           </div>
           <div>
-            <h3 className="text-sm font-semibold">Flow Visualization</h3>
-            <p className="text-[11px] text-muted-foreground">Real-time warehouse pipeline</p>
+            <h3 className="text-sm font-semibold text-foreground">Flow Visualization</h3>
+            <p className="text-[11px] text-muted-foreground/70">Real-time warehouse pipeline</p>
           </div>
         </div>
-        <Badge variant="secondary" className="text-[10px] gap-1.5">
+        <Badge variant="secondary" className="text-[10px] gap-1.5 font-medium">
           <span className="h-1.5 w-1.5 rounded-full bg-success animate-pulse-subtle" />
           Live
         </Badge>
@@ -170,6 +183,24 @@ export function FlowVisualization() {
               )
             })}
           </svg>
+
+          {particles.map((p) => (
+            <motion.div
+              key={p.id}
+              className="absolute rounded-full bg-accent/20"
+              style={{ width: p.size, height: p.size, left: `${p.x}%`, top: `${p.y}%` }}
+              animate={{
+                y: [0, -30, 0, 20, 0],
+                opacity: [0.2, 0.6, 0.2, 0.4, 0.2],
+              }}
+              transition={{
+                duration: 6 + p.speed * 5,
+                repeat: Infinity,
+                delay: p.delay,
+                ease: "easeInOut",
+              }}
+            />
+          ))}
 
           {nodes.map((node, i) => {
             const Icon = nodeIcons[node.type]

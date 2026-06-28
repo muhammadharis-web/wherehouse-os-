@@ -22,10 +22,10 @@ export function AnalyticsCharts() {
 
   return (
     <div className="rounded-xl glass-card">
-      <div className="flex items-center justify-between border-b border-border/30 px-5 py-3">
-        <div className="flex items-center gap-2">
+      <div className="flex items-center justify-between border-b border-border/30 px-6 py-4">
+        <div className="flex items-center gap-2.5">
           <BarChart3 className="h-4 w-4 text-muted-foreground" />
-          <h3 className="text-sm font-semibold">Analytics</h3>
+          <h3 className="text-sm font-semibold text-foreground">Analytics</h3>
         </div>
         <Tabs defaultValue="7d" className="h-7">
           <TabsList className="h-7 p-0.5">
@@ -99,23 +99,29 @@ export function AnalyticsCharts() {
           ) : (
             <div className="flex items-end justify-between gap-1.5 h-48">
               {barData.map((d, i) => (
-                <div key={d.label} className="flex-1 flex flex-col items-center gap-1 h-full justify-end">
+                <motion.div
+                  key={d.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.05 }}
+                  className="flex-1 flex flex-col items-center gap-1 h-full justify-end"
+                >
                   <div className="flex gap-0.5 w-full h-full items-end">
                     <motion.div
                       initial={{ height: 0 }}
                       animate={{ height: `${(d.inbound / (Math.max(...barData.map((x) => x.inbound)) || 1)) * 100}%` }}
-                      transition={{ duration: 0.6, delay: i * 0.05, ease: "easeOut" }}
-                      className="flex-1 rounded-t-sm bg-accent/60"
+                      transition={{ duration: 0.8, delay: i * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+                      className="flex-1 rounded-t-sm bg-accent/60 hover:bg-accent/80 transition-colors"
                     />
                     <motion.div
                       initial={{ height: 0 }}
                       animate={{ height: `${(d.outbound / (Math.max(...barData.map((x) => x.outbound)) || 1)) * 100}%` }}
-                      transition={{ duration: 0.6, delay: i * 0.08, ease: "easeOut" }}
-                      className="flex-1 rounded-t-sm bg-primary/60"
+                      transition={{ duration: 0.8, delay: i * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
+                      className="flex-1 rounded-t-sm bg-primary/60 hover:bg-primary/80 transition-colors"
                     />
                   </div>
                   <span className="text-[10px] text-muted-foreground">{d.label}</span>
-                </div>
+                </motion.div>
               ))}
             </div>
           )}

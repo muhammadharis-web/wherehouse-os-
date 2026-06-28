@@ -42,12 +42,12 @@ export function AIInsights() {
   if (loading) return null
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-3">
       <div className="flex items-center gap-2">
         <Sparkles className="h-4 w-4 text-accent" />
         <h2 className="text-sm font-semibold text-foreground">AI Insights</h2>
       </div>
-      <div className="grid gap-2">
+      <div className="grid gap-2.5">
         {insights.map((insight, i) => {
           const config = severityConfig[insight.severity]
           const Icon = config.icon

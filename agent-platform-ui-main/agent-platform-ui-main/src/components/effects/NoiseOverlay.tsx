@@ -23,8 +23,8 @@ export function NoiseOverlay() {
   }, [])
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-[60] mix-blend-overlay opacity-[0.03]">
-      <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+    <div className="pointer-events-none fixed inset-0 z-[60] mix-blend-overlay opacity-[0.02]">
+      <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <filter id="noise" ref={ref}>
           <feTurbulence
             type="fractalNoise"

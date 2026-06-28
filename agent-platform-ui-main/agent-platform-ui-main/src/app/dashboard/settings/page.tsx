@@ -425,7 +425,12 @@ export default function SettingsPage() {
   const activeSectionData = useMemo(() => sections.find((s) => s.id === activeSection)!, [activeSection])
 
   return (
-    <div className="space-y-8">
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+      className="space-y-8"
+    >
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -433,42 +438,54 @@ export default function SettingsPage() {
       >
         <div>
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-accent to-primary shadow-lg">
+            <motion.div
+              whileHover={{ rotate: -45, scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+              className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-accent to-primary shadow-lg"
+            >
               <Settings className="h-4 w-4 text-white" />
-            </div>
+            </motion.div>
             <div>
-              <h1 className="text-xl font-semibold tracking-tight text-foreground">Settings</h1>
-              <p className="text-sm text-muted-foreground">Manage your warehouse OS configuration</p>
+              <h1 className="text-[22px] font-bold tracking-tight text-foreground">Settings</h1>
+              <p className="text-sm text-muted-foreground/80 mt-0.5">Manage your warehouse OS configuration</p>
             </div>
           </div>
         </div>
         <div className="flex items-center gap-2" suppressHydrationWarning>
-          {saving && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-            >
-              <Badge variant="default" className="text-[10px] gap-1">
-                <Loader2 className="h-3 w-3 animate-spin" />
-                Saving
-              </Badge>
-            </motion.div>
-          )}
-          {hasChanges && !saving && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-            >
-              <Badge variant="warning" className="text-[10px] gap-1">
-                <span className="h-1.5 w-1.5 rounded-full bg-warning animate-pulse-subtle" />
-                Unsaved
-              </Badge>
-            </motion.div>
-          )}
+          <AnimatePresence>
+            {saving && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+              >
+                <Badge variant="default" className="text-[10px] gap-1">
+                  <Loader2 className="h-3 w-3 animate-spin" />
+                  Saving
+                </Badge>
+              </motion.div>
+            )}
+            {hasChanges && !saving && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+              >
+                <Badge variant="warning" className="text-[10px] gap-1">
+                  <motion.span
+                    animate={{ scale: [1, 1.3, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="h-1.5 w-1.5 rounded-full bg-warning"
+                  />
+                  Unsaved
+                </Badge>
+              </motion.div>
+            )}
+          </AnimatePresence>
           <Button
             variant="ghost"
             size="sm"
-            className="h-8 gap-1.5 text-xs rounded-xl"
+            className="h-8 gap-1.5 text-xs rounded-xl hover:text-destructive transition-colors"
             onClick={resetSettings}
             disabled={saving}
           >
@@ -522,6 +539,6 @@ export default function SettingsPage() {
           <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   )
 }

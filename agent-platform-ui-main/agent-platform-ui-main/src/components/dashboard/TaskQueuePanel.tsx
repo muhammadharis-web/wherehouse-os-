@@ -86,13 +86,13 @@ export function TaskQueuePanel() {
 
   return (
     <div className="rounded-xl glass-card">
-      <div className="flex items-center justify-between border-b border-border/30 px-5 py-3">
-        <div className="flex items-center gap-2">
+      <div className="flex items-center justify-between border-b border-border/30 px-6 py-4">
+        <div className="flex items-center gap-2.5">
           <ListTodo className="h-4 w-4 text-muted-foreground" />
-          <h3 className="text-sm font-semibold">Task Queue</h3>
-          <Badge variant="secondary" className="text-[10px] ml-1">{filtered.length}</Badge>
+          <h3 className="text-sm font-semibold text-foreground">Task Queue</h3>
+          <Badge variant="secondary" className="text-[10px] font-medium ml-1">{filtered.length}</Badge>
         </div>
-        <Button variant="ghost" size="sm" className="h-7 text-xs gap-1">
+        <Button variant="ghost" size="sm" className="h-7 text-xs gap-1 font-medium">
           View All <ArrowRight className="h-3 w-3" />
         </Button>
       </div>
@@ -103,10 +103,11 @@ export function TaskQueuePanel() {
             return (
               <motion.div
                 key={task.id}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.04 }}
-                className="group flex items-start gap-3 rounded-lg px-3 py-2.5 transition-colors hover:bg-muted/50"
+                initial={{ opacity: 0, x: -10, scale: 0.95 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                transition={{ delay: i * 0.03, duration: 0.3 }}
+                whileHover={{ x: 2 }}
+                className="group flex items-start gap-3 rounded-lg px-3 py-2.5 transition-colors hover:bg-muted/50 cursor-default"
               >
                 <div
                   className={cn(

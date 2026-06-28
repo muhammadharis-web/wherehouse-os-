@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
-import { Activity, Server, Cpu, HardDrive, Wifi, CheckCircle2, AlertCircle, Clock, Zap } from "lucide-react"
+import { Activity, Server, Cpu, HardDrive, Wifi, CheckCircle2, AlertCircle, Clock, Zap, Sparkles } from "lucide-react"
 
 const metrics = [
   { icon: Server, label: "API Latency", value: "47ms", pct: 20, status: "good" },
@@ -65,13 +65,27 @@ export default function MonitoringPage() {
   ]
 
   return (
-    <div className="space-y-6">
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+      className="space-y-6"
+    >
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
+        className="flex items-center gap-3"
       >
-        <h1 className="text-2xl font-bold tracking-tight text-foreground">Monitoring</h1>
-        <p className="text-sm text-muted-foreground mt-1">Real-time system health and agent performance</p>
+        <motion.div
+          whileHover={{ rotate: 15, scale: 1.05 }}
+          className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-accent to-primary shadow-lg"
+        >
+          <Activity className="h-4 w-4 text-white" />
+        </motion.div>
+        <div>
+          <h1 className="text-[22px] font-bold tracking-tight text-foreground">Monitoring</h1>
+          <p className="text-sm text-muted-foreground/80 mt-0.5">Real-time system health and agent performance</p>
+        </div>
       </motion.div>
 
       <motion.div
@@ -87,18 +101,18 @@ export default function MonitoringPage() {
             <motion.div
               key={m.label}
               variants={cardVariants}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="rounded-xl border border-border/50 bg-card p-4 hover:shadow-lg hover:shadow-accent/5 transition-shadow"
+              whileHover={{ y: -4, scale: 1.01, transition: { duration: 0.2 } }}
+              className="rounded-xl border border-border/50 bg-card p-4 hover:shadow-lg hover:shadow-accent/5 transition-all duration-300"
             >
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
-                  <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted">
+                  <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted transition-colors group-hover:bg-accent/10">
                     <Icon className="h-3.5 w-3.5 text-muted-foreground" />
                   </div>
                   <span className="text-xs font-medium text-muted-foreground">{m.label}</span>
                 </div>
                 <motion.div
-                  animate={{ scale: [1, 1.3, 1] }}
+                  animate={{ scale: [1, 1.4, 1] }}
                   transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
                   className={`h-2 w-2 rounded-full ${m.status === "good" ? "bg-emerald-500" : "bg-amber-500"}`}
                 />
@@ -106,7 +120,14 @@ export default function MonitoringPage() {
               <div className="flex items-center justify-between gap-3">
                 <GaugeMeter pct={m.pct} color={color} />
                 <div className="text-right">
-                  <p className="text-xl font-bold text-foreground">{m.value}</p>
+                  <motion.p
+                    initial={{ opacity: 0, x: -5 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.5 + i * 0.1 }}
+                    className="text-xl font-bold text-foreground tabular-nums"
+                  >
+                    {m.value}
+                  </motion.p>
                   <p className="text-[10px] text-muted-foreground">{m.pct}% capacity</p>
                 </div>
               </div>
@@ -119,10 +140,13 @@ export default function MonitoringPage() {
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4, duration: 0.5 }}
-        className="rounded-xl border border-border/50 bg-card overflow-hidden"
+        className="rounded-xl border border-border/50 bg-card/50 backdrop-blur-sm overflow-hidden hover:shadow-lg hover:shadow-accent/5 transition-shadow duration-300"
       >
         <div className="border-b border-border/30 bg-muted/30 px-5 py-3 flex items-center justify-between">
-          <h2 className="text-sm font-semibold text-foreground">Agent Status</h2>
+          <div className="flex items-center gap-2">
+            <Sparkles className="h-4 w-4 text-accent" />
+            <h2 className="text-sm font-semibold text-foreground">Agent Status</h2>
+          </div>
           <motion.span
             animate={{ opacity: [1, 0.3, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
@@ -185,6 +209,6 @@ export default function MonitoringPage() {
           })}
         </div>
       </motion.div>
-    </div>
+    </motion.div>
   )
 }

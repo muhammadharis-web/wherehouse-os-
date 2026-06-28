@@ -35,16 +35,25 @@ export function AgentCard({ agent, index }: AgentCardProps) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.08, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+      transition={{ delay: index * 0.06, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+      whileHover={{ y: -4, transition: { duration: 0.2 } }}
       onClick={() => router.push("/dashboard/agents")}
-      className="group relative rounded-xl glass-card cursor-pointer"
+      className="group relative rounded-xl glass-card cursor-pointer overflow-hidden"
     >
-      <div className="relative z-10">
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileHover={{ opacity: 1 }}
+        className="absolute inset-0 bg-gradient-to-br from-accent/[0.03] to-transparent pointer-events-none"
+      />
+      <div className="relative z-10 p-0">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">
-            <div className={cn("flex h-10 w-10 items-center justify-center rounded-lg glass-card-strong", status.bg)}>
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              className={cn("flex h-10 w-10 items-center justify-center rounded-lg glass-card-strong transition-shadow duration-300", status.bg)}
+            >
               <Bot className={cn("h-5 w-5", status.color)} />
-            </div>
+            </motion.div>
             <div>
               <h3 className="text-sm font-semibold text-foreground">{agent.name}</h3>
               <p className="text-xs text-muted-foreground">{agent.role}</p>
@@ -52,9 +61,9 @@ export function AgentCard({ agent, index }: AgentCardProps) {
           </div>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="h-8 w-8"><MoreHorizontal className="h-4 w-4" /></Button>
+              <Button variant="ghost" size="icon" className="h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity"><MoreHorizontal className="h-4 w-4" /></Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
+            <DropdownMenuContent align="end" className="rounded-xl border-border/50">
               <DropdownMenuItem onClick={() => router.push("/dashboard/agents")}>View Details</DropdownMenuItem>
               <DropdownMenuItem>Restart Agent</DropdownMenuItem>
               <DropdownMenuSeparator />
@@ -64,10 +73,15 @@ export function AgentCard({ agent, index }: AgentCardProps) {
         </div>
 
         <div className="mt-4 flex items-center gap-2">
-          <div className={cn("flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium", status.bg, status.color)}>
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: index * 0.08 + 0.2, type: "spring" }}
+            className={cn("flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium", status.bg, status.color)}
+          >
             <StatusIcon className={cn("h-3 w-3", agent.status === "processing" && "animate-spin")} />
             {status.label}
-          </div>
+          </motion.div>
           <span className="text-xs text-muted-foreground">{agent.uptime}</span>
         </div>
 

@@ -40,10 +40,23 @@ const rowVariants = {
 
 export default function TeamPage() {
   return (
-    <div className="space-y-6">
-      <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="text-2xl font-bold tracking-tight text-foreground">Team</h1>
-        <p className="text-sm text-muted-foreground mt-1">Manage team members and permissions</p>
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+      className="space-y-6"
+    >
+      <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-3">
+        <motion.div
+          whileHover={{ scale: 1.05, rotate: -5 }}
+          className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-accent to-primary shadow-lg"
+        >
+          <Users className="h-4 w-4 text-white" />
+        </motion.div>
+        <div>
+          <h1 className="text-xl font-semibold tracking-tight text-foreground">Team</h1>
+          <p className="text-sm text-muted-foreground">Manage team members and permissions</p>
+        </div>
       </motion.div>
 
       <motion.div
@@ -138,6 +151,6 @@ export default function TeamPage() {
           })}
         </div>
       </motion.div>
-    </div>
+    </motion.div>
   )
 }
