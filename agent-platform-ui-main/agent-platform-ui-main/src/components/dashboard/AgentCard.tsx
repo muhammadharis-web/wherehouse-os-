@@ -37,7 +37,7 @@ export function AgentCard({ agent, index }: AgentCardProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.08, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
       onClick={() => router.push("/dashboard/agents")}
-      className="group relative rounded-xl glass-card cursor-pointer"
+      className="group relative rounded-xl glass-card cursor-pointer p-5"
     >
       <div className="relative z-10">
         <div className="flex items-start justify-between">

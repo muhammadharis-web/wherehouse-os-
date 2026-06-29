@@ -94,7 +94,7 @@ export function TopBar() {
                   const ns = notifStyles[n.type]
                   const Icon = ns.icon
                   return (
-                    <div key={n.id} className="flex items-start gap-3 px-4 py-3 hover:bg-muted/30 transition-colors cursor-pointer border-b border-border/20 last:border-0">
+                    <div key={n.id} onClick={() => { router.push("/dashboard/notifications"); setShowNotifs(false) }} className="flex items-start gap-3 px-4 py-3 hover:bg-muted/30 transition-colors cursor-pointer border-b border-border/20 last:border-0">
                       <div className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-full", ns.bg)}>
                         <Icon className={cn("h-3.5 w-3.5", ns.color)} />
                       </div>
@@ -110,7 +110,7 @@ export function TopBar() {
                 })}
               </div>
               <div className="border-t border-border/30 px-4 py-2">
-                <button className="text-[11px] text-accent hover:text-accent/80 transition-colors w-full text-center">
+                <button onClick={() => { router.push("/dashboard/notifications"); setShowNotifs(false) }} className="text-[11px] text-accent hover:text-accent/80 transition-colors w-full text-center">
                   View all notifications
                 </button>
               </div>

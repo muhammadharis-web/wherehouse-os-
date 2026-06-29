@@ -1,5 +1,6 @@
 "use client"
 
+import { useRouter } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
@@ -52,6 +53,7 @@ function getAlertsFromShipments(shipments: {
 }
 
 export function AlertsPanel() {
+  const router = useRouter()
   const { data: shipments, loading } = useShipments()
   const [dismissed, setDismissed] = useState<string[]>([])
 
@@ -85,11 +87,12 @@ export function AlertsPanel() {
               return (
                 <motion.div
                   key={alert.id}
+                  onClick={() => router.push("/dashboard/notifications")}
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0, x: 100 }}
                   transition={{ duration: 0.3 }}
-                  className={cn("group relative flex items-start gap-3 rounded-lg border px-3 py-3 transition-all", style.border, style.bg)}
+                  className={cn("group relative flex items-start gap-3 rounded-lg border px-3 py-3 transition-all cursor-pointer hover:bg-muted/10", style.border, style.bg)}
                 >
                   <div className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-full", `${style.bg} ${style.icon}`)}>
                     {alert.icon}
@@ -105,7 +108,7 @@ export function AlertsPanel() {
                     <span className="text-[10px] text-muted-foreground mt-1 block">{alert.time}</span>
                   </div>
                   <button
-                    onClick={() => dismissAlert(alert.id)}
+                    onClick={(e) => { e.stopPropagation(); dismissAlert(alert.id) }}
                     className="shrink-0 rounded-full p-1 text-muted-foreground opacity-0 transition-opacity hover:text-foreground group-hover:opacity-100"
                   >
                     <X className="h-3 w-3" />
