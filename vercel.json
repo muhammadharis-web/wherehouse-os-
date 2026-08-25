@@ -1,4 +1,5 @@
 {
+  "rootDir": "agent-platform-ui-main/agent-platform-ui-main",
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
