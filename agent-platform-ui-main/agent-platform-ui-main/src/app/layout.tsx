@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Sora, Barlow_Condensed } from "next/font/google"
+import { Toaster } from "sonner"
 import "./globals.css"
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider"
 import { TooltipProvider } from "@/components/ui/tooltip"
@@ -30,6 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <NoiseOverlay />
                 <ThemeToggle />
                 <main id="main-content">{children}</main>
+                <Toaster position="bottom-right" theme="dark" richColors closeButton />
               </SessionProvider>
             </SettingsProvider>
           </SmoothScrollProvider>

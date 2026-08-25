@@ -7,6 +7,7 @@ import {
   XCircle, Loader2, AlertTriangle, X,
 } from "lucide-react"
 import { api } from "@/lib/api"
+import { toast } from "sonner"
 import { useIntegrations, type IntegrationConnection, type SyncResult } from "@/hooks/use-integrations"
 
 export default function IntegrationsPage() {
@@ -72,11 +73,12 @@ export default function IntegrationsPage() {
         {deleteId && (
           <DeleteConfirmDialog
             onCancel={() => setDeleteId(null)}
-            onConfirm={async () => {
-              await api.delete(`/api/v1/integrations/connections/${deleteId}`)
-              setDeleteId(null)
-              refetch()
-            }}
+              onConfirm={async () => {
+                await api.delete(`/api/v1/integrations/connections/${deleteId}`)
+                setDeleteId(null)
+                refetch()
+                toast.success("Connection removed")
+              }}
           />
         )}
       </AnimatePresence>
@@ -101,9 +103,12 @@ function AddConnectionForm({ onClose, onSuccess }: { onClose: () => void; onSucc
         username: form.username,
         password: form.password,
       })
+      toast.success("Odoo connected successfully")
       onSuccess()
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Connection failed")
+      const message = err instanceof Error ? err.message : "Connection failed"
+      setError(message)
+      toast.error(message)
     } finally {
       setLoading(false)
     }
@@ -183,12 +188,16 @@ function ConnectionCard({ conn, onDelete, onUpdated }: {
       const res = await api.post<{ connected: boolean; version?: string }>(`/api/v1/integrations/connections/${conn.id}/test`)
       if (res.connected) {
         showFeedback("success", `Connected — v${res.version || "?"}`)
+        toast.success(`Connection test passed${res.version ? ` — v${res.version}` : ""}`)
       } else {
         showFeedback("error", "Connection failed")
+        toast.error("Connection test failed")
       }
       onUpdated()
     } catch (err: unknown) {
-      showFeedback("error", err instanceof Error ? err.message : "Test failed")
+      const message = err instanceof Error ? err.message : "Test failed"
+      showFeedback("error", message)
+      toast.error(message)
     } finally {
       setAction("idle")
     }
@@ -199,10 +208,14 @@ function ConnectionCard({ conn, onDelete, onUpdated }: {
     setFeedback(null)
     try {
       const res = await api.post<SyncResult>(`/api/v1/integrations/connections/${conn.id}/sync`)
-      showFeedback("success", res.message || "Sync completed")
+      const message = res.message || "Sync completed"
+      showFeedback("success", message)
+      toast.success(message)
       onUpdated()
     } catch (err: unknown) {
-      showFeedback("error", err instanceof Error ? err.message : "Sync failed")
+      const message = err instanceof Error ? err.message : "Sync failed"
+      showFeedback("error", message)
+      toast.error(message)
     } finally {
       setAction("idle")
     }
